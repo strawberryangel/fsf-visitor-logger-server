@@ -11,7 +11,7 @@
       this.connection = databaseConnection;
     }
 
-    AvatarAPI.fromDatabase = function(dbDoc) {
+    AvatarAPI.prototype.fromDatabase = function(dbDoc) {
       var ref, ref1;
       avatar.uuid = dbDoc._id;
       avatar.username = dbDoc.username;
@@ -22,7 +22,7 @@
       };
     };
 
-    AvatarAPI.toDatabase = function(avatar) {
+    AvatarAPI.prototype.toDatabase = function(avatar) {
       return {
         _id: avatar.uuid,
         username: avatar.username,
@@ -35,7 +35,7 @@
       };
     };
 
-    AvatarAPI.isEqual = function(a, b) {
+    AvatarAPI.prototype.isEqual = function(a, b) {
       var ref, ref1;
       if ((a == null) || (b == null)) {
         return false;
@@ -58,7 +58,7 @@
       return true;
     };
 
-    AvatarAPI.load = function(uuid) {
+    AvatarAPI.prototype.load = function(uuid) {
       var deferral, group, search, self;
       self = this;
       deferral = q.defer();
@@ -91,7 +91,7 @@
       return deferral.promise;
     };
 
-    AvatarAPI.save = function(avatar) {
+    AvatarAPI.prototype.save = function(avatar) {
       var deferral, group, search, self;
       self = this;
       deferral = q.defer();

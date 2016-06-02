@@ -6,7 +6,7 @@ class AvatarAPI
     constructor: (databaseConnection) ->
         @connection = databaseConnection
 
-    @fromDatabase: (dbDoc) ->
+    fromDatabase: (dbDoc) ->
         avatar.uuid = dbDoc._id
         avatar.username = dbDoc.username
         avatar.displayName = dbDoc.displayName
@@ -14,7 +14,7 @@ class AvatarAPI
             onFile: dbDoc.paymentInfo?.onFile
             used: dbDoc.paymentInfo?.used
 
-    @toDatabase: (avatar) ->
+    toDatabase: (avatar) ->
         {
             _id: avatar.uuid
             username: avatar.username
@@ -25,7 +25,7 @@ class AvatarAPI
                 used: avatar.payinfo.used
         }
 
-    @isEqual: (a, b)->
+    isEqual: (a, b)->
         return false if not a? or not b?
         return false if a.uuid isnt b.uuid
         return false if a.username isnt b.username
@@ -35,7 +35,7 @@ class AvatarAPI
 
         true
 
-    @load: (uuid) ->
+    load: (uuid) ->
         self = @
         deferral = q.defer()
 
@@ -65,7 +65,7 @@ class AvatarAPI
 
         deferral.promise
 
-    @save: (avatar) ->
+    save: (avatar) ->
         self = @
         deferral = q.defer()
         if not avatar?
