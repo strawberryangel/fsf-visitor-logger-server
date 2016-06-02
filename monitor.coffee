@@ -1,3 +1,5 @@
+Avatar = require('./avatar/model').Avatar
+api = require('./avatar/api')
 
 ## Process one avatar's entry in the HTTP request.
 processLine = (value) ->
@@ -12,11 +14,22 @@ processLine = (value) ->
     console.log "login  : ", login
     console.log "display: ", display
 
+    avatar = new Avatar uuid, login, display
+    api.save avatar
+    .then (avatar) ->
+        console.log "Successfully saved: ", avatar
+    .catch (error) ->
+        console.log "Failed to save avatar: ", error
+
 
 ## Decompose the HTTP request body into individual lines and
 ## have them processed.
 processBody = (value) ->
-    return if not value?
+    if not value?
+        return {
+            error: true
+            message: "Body was empty."
+        }
 
     lines = value.split "\n"
 
@@ -25,6 +38,10 @@ processBody = (value) ->
 
     for line in lines
         processLine line if line.length > 0
+
+    return {
+        error: false
+    }
 
 
 module.exports.processBody = processBody

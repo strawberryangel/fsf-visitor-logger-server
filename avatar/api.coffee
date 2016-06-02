@@ -1,4 +1,5 @@
 q = require 'q'
+mongo = require 'mongo'
 
 COLLECTION_NAME = 'avatars'
 
@@ -101,5 +102,6 @@ class AvatarAPI
             console.log("Search for avatar ", search, " failed: ", err)
             connection.close()
 
+singleton = new AvatarAPI()
 
-module.exports.AvatarAPI = AvatarAPI
+module.exports = singleton
