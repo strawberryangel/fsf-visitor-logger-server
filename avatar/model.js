@@ -123,4 +123,4 @@
 
 }).call(this);
 
-//# sourceMappingURL=avatar.js.map
+//# sourceMappingURL=model.js.map

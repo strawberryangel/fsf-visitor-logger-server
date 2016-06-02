@@ -39,18 +39,3 @@ class Connection
 
 module.exports = Connection
 
-##db = new Connection("localhost:fsf")
-##db.open()
-##db.execute(function(db){ ... })
-##db.execute(function(db){ ... })
-##db.execute(function(db){ ... })
-##db.execute(function(db){ ... })
-##db.close()
-##
-##db.open()
-##db.execute(function(db){ ... })
-##db.execute(function(db){ ... })
-##db.execute(function(db){ ... })
-##db.execute(function(db){ ... })
-##db.close()
-##
