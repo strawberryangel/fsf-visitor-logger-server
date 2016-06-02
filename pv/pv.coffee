@@ -8,5 +8,5 @@ class PV
         @_lock--
         @_callback() if @_lock == 0 && @_callback
 
-module.exports = PV
+module.exports.PV = PV
 

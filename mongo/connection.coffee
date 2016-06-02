@@ -1,5 +1,5 @@
 mongo = require('mongodb').MongoClient
-PV = require './../pv/pv'
+PV = require('./../pv/pv').PV
 
 class Connection
     constructor: (@url) ->
@@ -37,5 +37,5 @@ class Connection
                 ## TODO: Handle this better
                 console.log("Could not connect to database: ", err)
 
-module.exports = Connection
+module.exports.Connection = Connection
 

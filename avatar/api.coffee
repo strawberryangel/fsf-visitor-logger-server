@@ -1,5 +1,5 @@
 q = require 'q'
-mongo = require 'mongo'
+grid = require '../mongo/grid'
 
 COLLECTION_NAME = 'avatars'
 
@@ -73,8 +73,8 @@ class AvatarAPI
             deferral.reject "Could not save avatar."
             return
 
-        connection.open()
-        group = connection.collection COLLECTION_NAME
+        @connection.open()
+        group = @connection.collection COLLECTION_NAME
         search = {_id: @uuid}
         group.findOne search
         .then (doc) ->
@@ -83,11 +83,11 @@ class AvatarAPI
                     if err?
                         ##TODO: How to handle this
                         console.log("Avatar.save() insert failed: ", err, self)
-                        connection.close()
+                        self.connection.close()
             else
                 ## Found record
                 if self._isSameAsDatabase doc
-                    connection.close()
+                    self.connection.close()
                     return
 
                 ## Update record
@@ -96,12 +96,10 @@ class AvatarAPI
                         ##TODO: How to handle this
                         console.log("Avatar.save() update failed: ", err, self)
 
-                    connection.close()
+                    self.connection.close()
         .catch (err) ->
             ## TODO: Handle this
             console.log("Search for avatar ", search, " failed: ", err)
-            connection.close()
+            self.connection.close()
 
-singleton = new AvatarAPI()
-
-module.exports = singleton
+module.exports = new AvatarAPI grid

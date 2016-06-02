@@ -25,7 +25,7 @@
 
   })();
 
-  module.exports = PV;
+  module.exports.PV = PV;
 
 }).call(this);
 

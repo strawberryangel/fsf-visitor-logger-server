@@ -4,7 +4,7 @@
 
   mongo = require('mongodb').MongoClient;
 
-  PV = require('./../pv/pv');
+  PV = require('./../pv/pv').PV;
 
   Connection = (function() {
     function Connection(url) {
@@ -51,7 +51,7 @@
 
   })();
 
-  module.exports = Connection;
+  module.exports.Connection = Connection;
 
 }).call(this);
 
