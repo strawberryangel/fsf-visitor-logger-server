@@ -4,7 +4,7 @@
 
   mongo = require('mongodb').MongoClient;
 
-  PV = require('./pv');
+  PV = require('./../pv/pv');
 
   Connection = (function() {
     function Connection(url) {

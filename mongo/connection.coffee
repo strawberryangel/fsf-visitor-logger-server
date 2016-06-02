@@ -1,5 +1,5 @@
 mongo = require('mongodb').MongoClient
-PV = require './pv'
+PV = require './../pv/pv'
 
 class Connection
     constructor: (@url) ->
